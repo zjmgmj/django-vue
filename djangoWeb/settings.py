@@ -16,7 +16,6 @@ import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -80,18 +79,18 @@ WSGI_APPLICATION = 'djangoWeb.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '3306'
-    }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'blog',
+    'USER': 'root',
+    'PASSWORD': '888888',
+    'HOST': '123.207.243.65',
+    'PORT': '3306'
+  }
+  # 'default': {
+  #     'ENGINE': 'django.db.backends.sqlite3',
+  #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+  # }
 }
 
 
@@ -113,19 +112,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 # django-rest-framework设置
-REST_FRAMEWORK = {
-    'DEFAULT_VERSIONING_CLASS': ('rest_framework.versioning.URLPathVersioning'),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework.permissions.IsAdminUser'
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_VERSIONING_CLASS': ('rest_framework.versioning.URLPathVersioning'),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+#         'rest_framework.permissions.IsAdminUser'
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     )
+# }
 # 设置token的过期时间
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
@@ -139,7 +138,7 @@ CORS_ORIGIN_WHITELIST = (
     #'*'
     '0.0.0.0:8081',
     '127.0.0.1:8081',# 请求的域名
-    'localhost:8081',  
+    'localhost:8081',
     '0.0.0.0',
     'localhost',
 )
@@ -157,13 +156,22 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/_nuxt/'
+
+# STATIC_ROOT = os.path.join("\djangoWeb\dist\_nuxt")
+# STATIC_ROOT = os.path.join(BASE_DIR, "dist\_nuxt")
+print(os.path.dirname(__file__))
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "vueAdmin/dist/static")
+    (os.path.join('F:/python/djangoWeb/vueAdmin/dist/_nuxt/').replace('\\', '/'))
+    # (os.path.join('/vueAdmin/dist/_nuxt/').replace('\\', '/'))
+    # os.path.join(BASE_DIR, "dist\_nuxt")
+    # ("fonts", os.path.join(STATIC_ROOT, 'fonts')),
+    # ("icons", os.path.join(STATIC_ROOT, 'icons')),
+    # ("img", os.path.join(STATIC_ROOT, 'img'))
 ]

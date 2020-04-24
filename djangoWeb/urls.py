@@ -17,11 +17,16 @@ from django.contrib import admin
 
 from django.urls import path, include
 from django.views.generic import TemplateView
-from api import views
+from django.views.static import serve
+# from api import views
+from api import view, urls
+import djangoWeb.settings
 
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
+    # path(r'admin/', admin.site.urls),
     path(r'api/', include('api.urls'), name='api'),
-    path('', TemplateView.as_view(template_name='index.html'), name='admin')
+    path(r'test/', TemplateView.as_view(template_name='index.html'), name='admin'),
+    # path(r'', include('admin.urls'), name='admin'),
+    path(r'_nuxt/', serve, {'document_root': djangoWeb.settings.STATIC_URL})
 ]
